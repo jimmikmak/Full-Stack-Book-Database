@@ -16,7 +16,7 @@ const BookList = (props) => {
         <tbody>
           <tr>
             <td>The Lord of the Rings</td>
-            <td>JRR Tolkein</td>
+            <td>JRR Tolkien</td>
             <td>
               <Button>Edit</Button>
               <Button>Delete</Button>

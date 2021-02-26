@@ -17,6 +17,6 @@ mongoose.connection.on("error", (err) => {
   console.log(err, " mongoose failed to connect");
 });
 
-mongoose.connection.on("disconncted", () => {
+mongoose.connection.on("disconnected", () => {
   console.log("Mongoose is disconnected");
 });

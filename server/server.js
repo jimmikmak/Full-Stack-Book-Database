@@ -24,10 +24,10 @@ app.use(cors());
 
 
 // Require the controller after the middleware
-const movieController = require('./controllers/movieController');
+const bookController = require('./controllers/bookController');
 const authController  = require('./controllers/authController');
 
-app.use('/api/v1/movies', movieController);
+app.use('/api/v1/books', bookController);
 app.use('/auth', authController);
 
 app.listen(process.env.PORT || 9000, () => {

@@ -8,10 +8,10 @@ const AddBookForm = (props) => {
     author: "",
   });
 
-  useEffect(() => {
-    console.log("AddBookForm useEffect");
-    setFormState(props.book);
-  });
+  // useEffect(() => {
+  //   console.log("AddBookForm useEffect");
+  //   setFormState(props.book);
+  // });
 
   const handleChange = (e) => {
     const newState = { ...formState, [e.target.name]: e.target.value };
