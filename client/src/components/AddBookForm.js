@@ -11,7 +11,7 @@ const AddBookForm = (props) => {
   // useEffect(() => {
   //   console.log("AddBookForm useEffect");
   //   setFormState(props.book);
-  // });
+  // }, [props.book]);
 
   const handleChange = (e) => {
     const newState = { ...formState, [e.target.name]: e.target.value };

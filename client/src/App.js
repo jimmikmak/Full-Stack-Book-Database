@@ -1,16 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import BookList from "./components/BookList";
 import AddBookForm from "./components/AddBookForm";
 
-const App = (props) => {
-  const bookData = [
-    { id: 1, title: "The Lord of the Rings", author: "JRR Tolkien" },
-    { id: 2, title: "Nineteen Eighty-Four", author: "George Orwell" },
-    { id: 3, title: "IT", author: "Stephen King" },
-  ];
-
-  const [book, setBook] = useState(bookData);
-
+const App = () => {
   return (
     <div className="container">
       <h1>Book Tracker</h1>
