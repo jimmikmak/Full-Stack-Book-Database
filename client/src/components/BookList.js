@@ -1,18 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const BookList = () => {
-  const [bookList, setBookList] = useState([]);
-  const [bookEdit, setBookEdit] = useState({
-    title: "",
-    author: "",
-  });
-  const [bookDelete, setBookDelete] = useState({
-    title: "",
-    author: "",
-  });
-
+const BookList = (props) => {
   return (
     <div>
       <table className="table table-striped">
@@ -24,14 +14,16 @@ const BookList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Title data</td>
-            <td>Author data</td>
-            <td>
-              <Button>Edit</Button>
-              <Button>Delete</Button>
-            </td>
-          </tr>
+          {props.books.map((el, index) => (
+            <tr key={index} onClick={() => props.handleClick(index)}>
+              <td> {el.title}</td>
+              <td> {el.author}</td>
+              <td>
+                <Button>Edit</Button>
+                <Button>Delete</Button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

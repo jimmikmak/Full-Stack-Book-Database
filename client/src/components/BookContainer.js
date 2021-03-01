@@ -4,6 +4,7 @@ import AddBookForm from "./AddBookForm";
 
 const BookContainer = () => {
   const [bookList, setBookList] = useState([]);
+
   const handleAddBookFormSubmit = (title, author) => {
     const newBook = { title: title, author: author };
     const newBooks = [...bookList];
@@ -22,14 +23,14 @@ const BookContainer = () => {
     });
   };
 
-  //   const handleBookClick = (bookIndex) => {
-  //     console.log("bookIndex:", bookIndex);
-  //     const book = bookList[bookIndex];
-  //     console.log("book", book);
+  const handleBookClick = (bookIndex) => {
+    console.log("bookIndex:", bookIndex);
+    const book = bookList[bookIndex];
+    console.log("book", book);
 
-  //     setBookEdit(book);
-  //     setBookDelete(book);
-  //   };
+    // setBookEdit(book);
+    // setBookDelete(book);
+  };
 
   //   const handleEditBook = (book) => {
   //     console.log("handleEditBook", book);
@@ -76,22 +77,22 @@ const BookContainer = () => {
   //     });
   //   };
 
-  //   useEffect(() => {
-  //     fetch("http://localhost:9000/api/v1/books", {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //       .then((response) => {
-  //         console.log("books response", response);
-  //         return response.json();
-  //       })
-  //       .then((bookData) => {
-  //         console.log("bookData:", bookData);
-  //         setBookList(bookData.data);
-  //       });
-  //   }, []);
+  useEffect(() => {
+    fetch("http://localhost:9000/api/v1/books", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log("books response", response);
+        return response.json();
+      })
+      .then((bookData) => {
+        console.log("bookData:", bookData);
+        setBookList(bookData.data);
+      });
+  }, []);
 
   return (
     <div className="container">
@@ -103,7 +104,7 @@ const BookContainer = () => {
         </div>
         <div className="flex-large">
           <h2>Current Library</h2>
-          <BookList />
+          <BookList books={bookList} handleClick={handleBookClick} />
         </div>
       </div>
     </div>
