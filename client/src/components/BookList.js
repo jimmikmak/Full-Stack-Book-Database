@@ -20,7 +20,9 @@ const BookList = (props) => {
               <td> {el.author}</td>
               <td>
                 <Button>Edit</Button>
-                <Button>Delete</Button>
+                <Button onClick={() => props.handleDeleteBook(book._id)}>
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}

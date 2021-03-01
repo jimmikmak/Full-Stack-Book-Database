@@ -4,12 +4,24 @@ import AddBookForm from "./AddBookForm";
 
 const BookContainer = () => {
   const [bookList, setBookList] = useState([]);
+  const [bookDelete, setBookDelete] = useState({
+    title: "",
+    author: "",
+  });
+
+  const handleBookClick = (bookIndex) => {
+    console.log("bookIndex:", bookIndex);
+    const book = bookList[bookIndex];
+    console.log("book", book);
+
+    setBookDelete(book);
+    // setBookEdit(book);
+  };
 
   const handleAddBookFormSubmit = (title, author) => {
     const newBook = { title: title, author: author };
     const newBooks = [...bookList];
     newBooks.push(newBook);
-
     setBookList(newBooks);
 
     fetch("http://localhost:9000/api/v1/books", {
@@ -23,13 +35,25 @@ const BookContainer = () => {
     });
   };
 
-  const handleBookClick = (bookIndex) => {
-    console.log("bookIndex:", bookIndex);
-    const book = bookList[bookIndex];
-    console.log("book", book);
+  const handleDeleteBook = (book) => {
+    console.log("handleDeleteBook:", book);
+    const foundBook = bookList.findIndex((bookEl) => {
+      console.log("bookEl:", bookEl);
+      return bookEl._id === book._id;
+    });
+    console.log("foundBook:", foundBook);
+    const newBooks = [...bookList];
+    newBooks[foundBook] = book;
+    setBookList(newBooks);
 
-    // setBookEdit(book);
-    // setBookDelete(book);
+    fetch(`http://localhost:9000/api/v1/books/${book._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((response) => {
+      console.log("DELETE response:", response);
+    });
   };
 
   //   const handleEditBook = (book) => {
@@ -52,28 +76,6 @@ const BookContainer = () => {
   //       body: JSON.stringify(book),
   //     }).then((response) => {
   //       console.log("PUT response:", response);
-  //     });
-  //   };
-
-  //   const handleDeleteBook = (book) => {
-  //     console.log("handleDeleteBook:", book);
-  //     const foundBook = bookList.findIndex((bookEl) => {
-  //       console.log("bookEl:", bookEl);
-  //       return bookEl._id === book._id;
-  //     });
-  //     console.log("foundBook:", foundBook);
-  //     const newBooks = [...bookList];
-  //     newBooks[foundBook] = book;
-
-  //     setBookList(newBooks);
-
-  //     fetch(`http://localhost:9000/api/v1/books/${book._id}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }).then((response) => {
-  //       console.log("DELETE response:", response);
   //     });
   //   };
 
@@ -104,7 +106,12 @@ const BookContainer = () => {
         </div>
         <div className="flex-large">
           <h2>Current Library</h2>
-          <BookList books={bookList} handleClick={handleBookClick} />
+          <BookList
+            books={bookList}
+            handleClick={handleBookClick}
+            book={bookDelete}
+            submit={handleDeleteBook}
+          />
         </div>
       </div>
     </div>
