@@ -20,7 +20,11 @@ const BookList = (props) => {
               <td> {el.author}</td>
               <td>
                 <Button>Edit</Button>
-                <Button onClick={() => props.handleDeleteBook(book._id)}>
+                <Button
+                  type="submit"
+                  className="btn btn-danger"
+                  onClick={() => props.handleDeleteBook(el._id)}
+                >
                   Delete
                 </Button>
               </td>

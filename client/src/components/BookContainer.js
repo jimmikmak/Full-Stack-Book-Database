@@ -35,18 +35,15 @@ const BookContainer = () => {
     });
   };
 
-  const handleDeleteBook = (book) => {
-    console.log("handleDeleteBook:", book);
-    const foundBook = bookList.findIndex((bookEl) => {
-      console.log("bookEl:", bookEl);
-      return bookEl._id === book._id;
+  const handleDeleteBook = (bookId) => {
+    console.log("bookId", bookId);
+    const newBooks = bookList.filter((book) => {
+      return book._id !== bookId;
     });
-    console.log("foundBook:", foundBook);
-    const newBooks = [...bookList];
-    newBooks[foundBook] = book;
+    console.log("newBooks", newBooks);
     setBookList(newBooks);
 
-    fetch(`http://localhost:9000/api/v1/books/${book._id}`, {
+    fetch(`http://localhost:9000/api/v1/books/${bookId._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -98,7 +95,7 @@ const BookContainer = () => {
 
   return (
     <div className="container">
-      <h1>Book Tracker</h1>
+      <h1>BOOK TRACKER</h1>
       <div className="flex-row">
         <div className="flex-large">
           <h2>Add New Book</h2>
@@ -110,7 +107,7 @@ const BookContainer = () => {
             books={bookList}
             handleClick={handleBookClick}
             book={bookDelete}
-            submit={handleDeleteBook}
+            handleDeleteBook={handleDeleteBook}
           />
         </div>
       </div>

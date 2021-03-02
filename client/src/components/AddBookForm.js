@@ -41,7 +41,7 @@ const AddBookForm = (props) => {
           value={formState.author}
           onChange={handleChange}
         />
-        <Button type="submit" class="btn btn-danger">
+        <Button type="submit" className="btn btn-success">
           Add New Book
         </Button>
       </form>

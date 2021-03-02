@@ -1,4 +1,5 @@
 import { BookContainer } from "./components/BookContainer";
+import "./index.css";
 
 const App = () => {
   return (
