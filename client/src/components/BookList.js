@@ -19,7 +19,13 @@ const BookList = (props) => {
               <td> {el.title}</td>
               <td> {el.author}</td>
               <td>
-                <Button>Edit</Button>
+                <Button
+                  onClick={() => {
+                    props.handleEditBook(el._id);
+                  }}
+                >
+                  Edit
+                </Button>
                 <Button
                   type="submit"
                   className="btn btn-danger"

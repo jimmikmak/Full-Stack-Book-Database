@@ -8,6 +8,12 @@ const BookContainer = () => {
     title: "",
     author: "",
   });
+  const [bookEdit, setBookEdit] = useState(false);
+  const initialFormState = {
+    title: "",
+    author: "",
+  };
+  const [currentBook, setCurrentBook] = useState(initialFormState);
 
   const handleBookClick = (bookIndex) => {
     console.log("bookIndex:", bookIndex);
@@ -15,7 +21,7 @@ const BookContainer = () => {
     console.log("book", book);
 
     setBookDelete(book);
-    // setBookEdit(book);
+    setBookEdit(book);
   };
 
   const handleAddBookFormSubmit = (title, author) => {
@@ -53,28 +59,29 @@ const BookContainer = () => {
     });
   };
 
-  //   const handleEditBook = (book) => {
-  //     console.log("handleEditBook", book);
-  //     const foundBook = bookList.findIndex((bookEl) => {
-  //       console.log("bookEl:", bookEl);
-  //       return bookEl._id === book._id;
-  //     });
-  //     console.log("foundBook:", foundBook);
-  //     const newBooks = [...bookList];
-  //     newBooks[foundBook] = book;
+  const handleEditBook = (book) => {
+    console.log("book", book);
+    setBookEdit(true);
+    setCurrentBook({
+      title: "",
+      author: "",
+    });
 
-  //     setBookList(newBooks);
+    fetch(`http://localhost:9000/api/v1/books/${book._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(book),
+    }).then((response) => {
+      console.log("PUT response:", response);
+    });
+  };
 
-  //     fetch(`http://localhost:9000/api/v1/books/${book._id}`, {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(book),
-  //     }).then((response) => {
-  //       console.log("PUT response:", response);
-  //     });
-  //   };
+  const handleUpdateBook = (bookId, updatedBook) => {
+    setBookEdit(false);
+    setBook(book.map((book) => (book._id === bookId ? updatedBook : book)));
+  };
 
   useEffect(() => {
     fetch("http://localhost:9000/api/v1/books", {
@@ -108,6 +115,7 @@ const BookContainer = () => {
             handleClick={handleBookClick}
             book={bookDelete}
             handleDeleteBook={handleDeleteBook}
+            handleEditBook={handleEditBook}
           />
         </div>
       </div>

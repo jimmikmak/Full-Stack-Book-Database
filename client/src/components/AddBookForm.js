@@ -26,7 +26,7 @@ const AddBookForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="new-book-form" onSubmit={handleSubmit}>
         <label>Title</label>
         <input
           type="text"
