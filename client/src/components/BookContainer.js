@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import BookList from "./BookList";
 import AddBookForm from "./AddBookForm";
 import EditBookForm from "./EditBookForm";
@@ -49,6 +49,7 @@ const BookContainer = () => {
     });
     console.log("newBooks", newBooks);
     setBookList(newBooks);
+    setBookEdit(false);
 
     fetch(`http://localhost:9000/api/v1/books/${bookId._id}`, {
       method: "DELETE",
@@ -81,7 +82,19 @@ const BookContainer = () => {
 
   const handleUpdateBook = (bookId, updatedBook) => {
     setBookEdit(false);
-    setBook(book.map((book) => (book._id === bookId ? updatedBook : book)));
+    setBookList(
+      bookId.map((book) => (book._id === bookId ? updatedBook : book))
+    );
+
+    fetch(`http://localhost:9000/api/v1/books/${bookId._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookId),
+    }).then((response) => {
+      console.log("PUT response:", response);
+    });
   };
 
   useEffect(() => {
@@ -107,19 +120,19 @@ const BookContainer = () => {
       <div className="flex-row">
         <div className="flex-large">
           {bookEdit ? (
-            <div>
+            <Fragment>
               <h2>Edit book</h2>
               <EditBookForm
                 setEditing={setBookEdit}
                 currentBook={currentBook}
                 updateBook={handleUpdateBook}
               />
-            </div>
+            </Fragment>
           ) : (
-            <div>
+            <Fragment>
               <h2>Add New Book</h2>
               <AddBookForm submit={handleAddBookFormSubmit} />
-            </div>
+            </Fragment>
           )}
         </div>
         <div className="flex-large">

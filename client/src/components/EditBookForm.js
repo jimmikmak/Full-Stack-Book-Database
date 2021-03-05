@@ -6,10 +6,10 @@ import { BookmarkTwoTone } from "@material-ui/icons";
 const EditBookForm = (props) => {
   const [book, setBook] = useState(props.currentBook);
 
-  useEffect(() => {
-    console.log("EditBookForm useEffect");
-    setBook(props.book);
-  }, [props.book]);
+  //   useEffect(() => {
+  //     console.log("EditBookForm useEffect");
+  //     setBook(props.book);
+  //   }, [props.book]);
 
   const handleInputChange = (e) => {
     const { title, value } = e.target;
