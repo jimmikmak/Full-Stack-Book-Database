@@ -1,51 +1,52 @@
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BookmarkTwoTone } from "@material-ui/icons";
 
 const EditBookForm = (props) => {
-  const [book, setBook] = useState(props.currentBook);
+  const [formState, setFormState] = useState({
+    title: "",
+    author: "",
+  });
 
   //   useEffect(() => {
   //     console.log("EditBookForm useEffect");
-  //     setBook(props.book);
+  //     setFormState(props.book);
   //   }, [props.book]);
 
-  const handleInputChange = (e) => {
-    const { title, value } = e.target;
+  const handleChange = (e) => {
+    const newState = { ...formState, [e.target.name]: e.target.value };
+    setFormState(newState);
+  };
 
-    setBook({ ...book, [title]: value });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("handleSubmit");
+    props.submit(formState.title, formState.author);
   };
 
   return (
     <div>
-      <form
-        className="edit-book-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          props.updateBook(book._id, book);
-        }}
-      >
+      <form className="edit-book-form" onSubmit={handleSubmit}>
         <label>Title</label>
         <input
           type="text"
           name="title"
-          value={book.title}
-          onChange={handleInputChange}
+          value={formState.title}
+          onChange={handleChange}
         />
         <label>Author</label>
         <input
           type="text"
           name="author"
-          value={book.author}
-          onChange={handleInputChange}
+          value={formState.author}
+          onChange={handleChange}
         />
         <Button type="submit" className="btn btn-success">
           Update Book
         </Button>
         <Button
           onClick={() => props.setEditing(false)}
-          className="btn btn-success"
+          className="btn btn-danger"
         >
           Cancel
         </Button>

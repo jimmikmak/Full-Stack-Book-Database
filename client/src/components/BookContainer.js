@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import BookList from "./BookList";
 import AddBookForm from "./AddBookForm";
 import EditBookForm from "./EditBookForm";
@@ -120,19 +120,19 @@ const BookContainer = () => {
       <div className="flex-row">
         <div className="flex-large">
           {bookEdit ? (
-            <Fragment>
+            <div>
               <h2>Edit book</h2>
               <EditBookForm
                 setEditing={setBookEdit}
                 currentBook={currentBook}
                 updateBook={handleUpdateBook}
               />
-            </Fragment>
+            </div>
           ) : (
-            <Fragment>
+            <div>
               <h2>Add New Book</h2>
               <AddBookForm submit={handleAddBookFormSubmit} />
-            </Fragment>
+            </div>
           )}
         </div>
         <div className="flex-large">
