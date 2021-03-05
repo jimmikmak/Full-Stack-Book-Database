@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -8,10 +8,10 @@ const AddBookForm = (props) => {
     author: "",
   });
 
-  // useEffect(() => {
-  //   console.log("AddBookForm useEffect");
-  //   setFormState(props.book);
-  // }, [props.book]);
+  useEffect(() => {
+    console.log("AddBookForm useEffect");
+    setFormState(props.book);
+  }, [props.book]);
 
   const handleChange = (e) => {
     const newState = { ...formState, [e.target.name]: e.target.value };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BookList from "./BookList";
 import AddBookForm from "./AddBookForm";
+import EditBookForm from "./EditBookForm";
 
 const BookContainer = () => {
   const [bookList, setBookList] = useState([]);
@@ -105,8 +106,21 @@ const BookContainer = () => {
       <h1>BOOK TRACKER</h1>
       <div className="flex-row">
         <div className="flex-large">
-          <h2>Add New Book</h2>
-          <AddBookForm submit={handleAddBookFormSubmit} />
+          {bookEdit ? (
+            <div>
+              <h2>Edit book</h2>
+              <EditBookForm
+                setEditing={setBookEdit}
+                currentBook={currentBook}
+                updateBook={handleUpdateBook}
+              />
+            </div>
+          ) : (
+            <div>
+              <h2>Add New Book</h2>
+              <AddBookForm submit={handleAddBookFormSubmit} />
+            </div>
+          )}
         </div>
         <div className="flex-large">
           <h2>Current Library</h2>
