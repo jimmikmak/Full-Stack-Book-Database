@@ -57,7 +57,7 @@ router.post("/register", async (req, res) => {
     req.session.username = createdUser.username;
     req.session.logged = true;
 
-    // res.redirect("/dashboard");
+    res.redirect("/dashboard");
   } catch (err) {
     res.send(err);
   }
