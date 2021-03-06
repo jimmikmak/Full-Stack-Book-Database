@@ -74,9 +74,6 @@ const BookContainer = () => {
 
   const handleUpdateBook = (updatedBook) => {
     setBookEdit(false);
-    // setBookList(
-    //   // 
-    // );bookId.map((book) => (book._id === bookId ? updatedBook : book))
 
     fetch(`http://localhost:9000/api/v1/books/${updatedBook._id}`, {
       method: "PUT",
@@ -87,7 +84,7 @@ const BookContainer = () => {
     }).then((response) => {
       console.log("PUT response:", response);
     });
-        fetch("http://localhost:9000/api/v1/books", {
+    fetch("http://localhost:9000/api/v1/books", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
