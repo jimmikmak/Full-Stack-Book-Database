@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const BookList = (props) => {
+  console.log("props.books", props.books)
   return (
     <div>
       <table className="table table-striped">
@@ -21,7 +22,7 @@ const BookList = (props) => {
               <td>
                 <Button
                   onClick={() => {
-                    props.handleEditBook(el._id);
+                    props.handleEditBook(el);
                   }}
                 >
                   Edit

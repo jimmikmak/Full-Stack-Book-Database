@@ -11,6 +11,7 @@ const BookContainer = () => {
   });
   const [bookEdit, setBookEdit] = useState(false);
   const initialFormState = {
+    _id: "",
     title: "",
     author: "",
   };
@@ -65,36 +66,41 @@ const BookContainer = () => {
     console.log("book", book);
     setBookEdit(true);
     setCurrentBook({
-      title: "",
-      author: "",
-    });
-
-    fetch(`http://localhost:9000/api/v1/books/${book._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(book),
-    }).then((response) => {
-      console.log("PUT response:", response);
+      _id: book._id,
+      title: book.title,
+      author: book.author,
     });
   };
 
-  const handleUpdateBook = (bookId, updatedBook) => {
+  const handleUpdateBook = (updatedBook) => {
     setBookEdit(false);
-    setBookList(
-      bookId.map((book) => (book._id === bookId ? updatedBook : book))
-    );
+    // setBookList(
+    //   // 
+    // );bookId.map((book) => (book._id === bookId ? updatedBook : book))
 
-    fetch(`http://localhost:9000/api/v1/books/${bookId._id}`, {
+    fetch(`http://localhost:9000/api/v1/books/${updatedBook._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(bookId),
+      body: JSON.stringify(updatedBook),
     }).then((response) => {
       console.log("PUT response:", response);
     });
+        fetch("http://localhost:9000/api/v1/books", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        console.log("books response", response);
+        return response.json();
+      })
+      .then((bookData) => {
+        console.log("bookData:", bookData);
+        setBookList(bookData.data);
+      });
   };
 
   useEffect(() => {

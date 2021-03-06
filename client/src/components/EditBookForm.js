@@ -4,14 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const EditBookForm = (props) => {
   const [formState, setFormState] = useState({
+    _id: "",
     title: "",
     author: "",
   });
 
-  //   useEffect(() => {
-  //     console.log("EditBookForm useEffect");
-  //     setFormState(props.book);
-  //   }, [props.book]);
+    useEffect(() => {
+      console.log("EditBookForm useEffect");
+      setFormState(props.currentBook);
+    }, [props.currentBook]);
 
   const handleChange = (e) => {
     const newState = { ...formState, [e.target.name]: e.target.value };
@@ -21,7 +22,7 @@ const EditBookForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handleSubmit");
-    props.submit(formState.title, formState.author);
+    props.updateBook(formState);
   };
 
   return (
