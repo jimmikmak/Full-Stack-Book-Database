@@ -10,3 +10,9 @@
   font-weight: 300;
   text-rendering: optimizeLegibility;
 }
+
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
