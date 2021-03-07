@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import BookList from "./BookList";
 import AddBookForm from "./AddBookForm";
 import EditBookForm from "./EditBookForm";
+import "./BookContainer.css";
 
 const BookContainer = () => {
   const [bookList, setBookList] = useState([]);
@@ -118,7 +119,7 @@ const BookContainer = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="BookContainer">
       <h1>BOOK TRACKER</h1>
       <div className="flex-row">
         <div className="flex-large">

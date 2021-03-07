@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./AddBookForm.css";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -26,7 +27,7 @@ const AddBookForm = (props) => {
 
   return (
     <div>
-      <form className="new-book-form" onSubmit={handleSubmit}>
+      <form className="AddBookForm" onSubmit={handleSubmit}>
         <label>Title</label>
         <input
           type="text"
