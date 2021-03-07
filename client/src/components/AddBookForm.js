@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AddBookForm.css";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+// import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
 const AddBookForm = (props) => {
   const [formState, setFormState] = useState({
     title: "",
@@ -26,27 +26,25 @@ const AddBookForm = (props) => {
   };
 
   return (
-    <div>
-      <form className="AddBookForm" onSubmit={handleSubmit}>
-        <label>Title</label>
-        <input
-          type="text"
-          name="title"
-          value={formState.title}
-          onChange={handleChange}
-        />
-        <label>Author</label>
-        <input
-          type="text"
-          name="author"
-          value={formState.author}
-          onChange={handleChange}
-        />
-        <Button type="submit" className="btn btn-success">
-          Add New Book
-        </Button>
-      </form>
-    </div>
+    <form className="AddBookForm" onSubmit={handleSubmit}>
+      <label>Title</label>
+      <input
+        type="text"
+        name="title"
+        value={formState.title}
+        onChange={handleChange}
+      />
+      <label>Author</label>
+      <input
+        type="text"
+        name="author"
+        value={formState.author}
+        onChange={handleChange}
+      />
+      <Button type="submit" className="btn btn-success">
+        Add New Book
+      </Button>
+    </form>
   );
 };
 
