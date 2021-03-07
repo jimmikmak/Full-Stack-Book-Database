@@ -2,11 +2,17 @@
 
 ## Description
 
-A simple app that allows users to keep track of their book libraries. Easily add new purchases, or update entries. Organised by book Title and Author.
+A simple REACT app that allows users to keep track of their book libraries. Easily add new purchases, or update entries. Organised by book Title and Author.
 
 Built using React and Express. 
 
 ## Installation 
+
+It is recommended to install Yarn through the npm package manager, which comes bundled with Node.js when you install it on your system.
+
+```bash
+npm install --global yarn
+```
 
 Use yarn to run both the client and server sides of the application.
 
