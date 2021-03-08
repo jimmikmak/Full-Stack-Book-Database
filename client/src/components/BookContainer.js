@@ -120,7 +120,9 @@ const BookContainer = () => {
 
   return (
     <div className="BookContainer">
-      <h1>BOOK TRACKER</h1>
+      <h1>
+        <strong>BOOK TRACKER</strong>
+      </h1>
       <div className="flex-row">
         <div className="flex-large">
           {bookEdit ? (
